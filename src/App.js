@@ -17,14 +17,6 @@ export default function App() {
     play(data);
   }, []);
 
-  const restart = React.useCallback(() => {
-    play();
-  }, []);
-
-  const startOver = React.useCallback(() => {
-    setState("welcome");
-  }, []);
-
   const view = React.useMemo(() => {
     switch (state) {
       case "welcome":
