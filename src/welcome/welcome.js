@@ -1,13 +1,25 @@
 import React from "react";
-import { Will } from "../characters/will/will";
-import { Chris } from "../characters/chris/chris";
 import "./welcome.css";
 
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
 export function Welcome({ onStart }) {
+  const onClick = React.useCallback(() => {
+    toggleFullScreen();
+    onStart();
+  }, [onStart]);
+
   return (
     <div className="welcome">
-      <Chris />
-      <Will />
+      <button onClick={onClick}>Start</button>
     </div>
   );
 }

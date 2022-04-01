@@ -7,14 +7,10 @@ import logo from "./images/logo.png";
 import "./App.css";
 
 export default function App() {
-  const [state, setState] = React.useState("playing");
+  const [state, setState] = React.useState("welcome");
 
-  const play = (userOptions) => {
+  const start = React.useCallback(() => {
     setState("playing");
-  };
-
-  const start = React.useCallback((data) => {
-    play(data);
   }, []);
 
   const view = React.useMemo(() => {

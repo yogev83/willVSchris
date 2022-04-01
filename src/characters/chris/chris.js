@@ -1,11 +1,11 @@
 import React from "react";
-import { shortTimeout, superLongTimeout } from "../../utils";
+import { shortTimeout, superLongTimeout, meduimTimeout } from "../../utils";
 import chris_png from "../../images/chris.png";
 import "./chris.css";
 
 const WIDTH = 98;
 const SPLAPPED_FRAME = 3;
-const SLAPPING_RANGE = 180;
+const SLAPPING_RANGE = 70;
 
 export const Chris = ({
   will_slapped_x,
@@ -36,8 +36,8 @@ export const Chris = ({
     if (will_slapped_x) {
       const chris_x = ref.current.getBoundingClientRect().left;
       if (
-        chris_x > will_slapped_x - SLAPPING_RANGE &&
-        chris_x < will_slapped_x + SLAPPING_RANGE
+        chris_x + WIDTH - SLAPPING_RANGE < will_slapped_x &&
+        will_slapped_x < chris_x + WIDTH + SLAPPING_RANGE
       ) {
         clearTimeout(jokeTimeoutId.current);
         setFrame(SPLAPPED_FRAME);
@@ -68,22 +68,19 @@ export const Chris = ({
           break;
         }
         case SPLAPPED_FRAME + 1: {
-          shortTimeout(() => {
-            let transitionendFired = false;
-            const onGone = () => {
-              if (transitionendFired) {
-                return;
-              }
-              transitionendFired = true;
-              ref.current.removeEventListener("animationend", onGone);
-              onSlapped();
-              setSlapped(false);
-              setFrame(0);
-            };
-
-            setSlapped(true);
-            ref.current.addEventListener("transitionend", onGone);
-          });
+          if (!slapped) {
+            shortTimeout(() => {
+              setSlapped(true);
+              superLongTimeout(() => {
+                onSlapped();
+                setFrame(0);
+                //HACK!!!
+                meduimTimeout(() => {
+                  setSlapped(false);
+                });
+              });
+            });
+          }
           break;
         }
         default: {
@@ -91,7 +88,7 @@ export const Chris = ({
       }
       ref.current.style.textIndent = `-${frame * WIDTH}px`;
     }
-  }, [frame, onJoked, onSlapped]);
+  }, [frame, onJoked, onSlapped, slapped]);
 
   React.useEffect(() => {
     if (ref.current) {

@@ -36,15 +36,17 @@ export const Will = ({ onSlap }) => {
 
       const endWalking = () => {
         document.removeEventListener("mouseup", endWalking);
+        document.removeEventListener("touchend", endWalking);
         clearTimeout(walkingTimout);
         setWalking(false);
       };
 
       const walk = (event) => {
         const will_x = ref.current.getBoundingClientRect().left;
-        const mouse_x = event.pageX;
+        const mouse_x = event.pageX || event.touches[0].clientX;
 
         let delta = mouse_x - will_x;
+
         let speed = delta / SPEED_REDUCER;
         let steps =
           speed < 0 ? Math.min(speed, -BENCHMARK) : Math.max(speed, BENCHMARK);
@@ -62,14 +64,20 @@ export const Will = ({ onSlap }) => {
       const onMouseClick = (event) => {
         fastClickTimeout = shortTimeout(() => {
           document.removeEventListener("mouseup", slap);
+          document.removeEventListener("touchend", slap);
+
           document.addEventListener("mouseup", endWalking);
+          document.addEventListener("touchend", endWalking);
           walk(event);
           setWalking(true);
         });
         document.addEventListener("mouseup", slap);
+        document.addEventListener("touchend", slap);
       };
 
       document.addEventListener("mousedown", onMouseClick);
+      document.addEventListener("touchstart", onMouseClick);
+
       listenersAdded.current = true;
     }
   }, [onSlap]);
