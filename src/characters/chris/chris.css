@@ -1,0 +1,27 @@
+.chrisWrapper {
+    position: absolute;
+    height: 178px;
+    width: 98px;
+}
+
+.chris {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    text-align: right;
+}
+
+.chris.slapped {
+    opacity: 0;
+}
+
+.chris-text {
+    top: -10px;
+    text-indent: 0px;
+    position: absolute;
+    width: 100%;
+    font-size: smaller;
+}
