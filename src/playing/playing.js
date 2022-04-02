@@ -5,6 +5,7 @@ import { Score } from "../score/score";
 import { getRandomInt } from "../utils";
 import "./playing.css";
 import theme from "../audio/theme.mp3";
+import { Controller } from "./controller/controller";
 
 const SCREEN_PADDING = 100;
 
@@ -72,6 +73,7 @@ export function Playing() {
           jokeTime={chrisJokeTime}
         />
         <Will onSlap={onSlap} />
+        <Controller />
       </div>
     </div>
   );

@@ -24,11 +24,11 @@ export const Score = ({ score }) => {
 
   return (
     <div className="scoreContainer">
-      <div className="name">Chris</div>
+      <div className="name">C</div>
       <div className={`score${changing ? " changing" : ""}`}>
         <div className="bar" ref={ref}></div>{" "}
       </div>
-      <div className="name">Will</div>
+      <div className="name">W</div>
     </div>
   );
 };

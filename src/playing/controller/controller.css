@@ -1,0 +1,30 @@
+.controller {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.controller .controlButton {
+    background: rgb(204 204 204 / 30%);
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.controller .controlButton.action {
+    margin-left: auto;
+}
+
+@media only screen and (max-height: 600px) {
+     .controller {
+         display: flex;
+        }
+    }
+
+
+
+
+

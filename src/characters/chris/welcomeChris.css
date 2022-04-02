@@ -1,0 +1,35 @@
+.welcomeChrisWrapper {
+    position: absolute;
+    height: 178px;
+    width: 98px;
+    opacity: 0;
+}
+
+.welcomeChrisWrapper.enter {
+    transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.welcomeChrisWrapper .welcomeChris {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    text-align: right;
+}
+
+.welcomeChrisWrapper .welcomeChris.slapped {
+    opacity: 0;
+}
+
+.welcomeChrisWrapper .chris-text {
+    top: -50px;
+    text-indent: 0px;
+    position: absolute;
+    width: 150px;
+
+}

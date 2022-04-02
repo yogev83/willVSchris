@@ -4,7 +4,7 @@
     width: 98px;
 }
 
-.chris {
+.chrisWrapper .chris {
     position: relative;
     height: 100%;
     width: 100%;
@@ -14,11 +14,11 @@
     text-align: right;
 }
 
-.chris.slapped {
+.chrisWrapper .chris.slapped {
     opacity: 0;
 }
 
-.chris-text {
+.chrisWrapper .chris-text {
     top: -10px;
     text-indent: 0px;
     position: absolute;

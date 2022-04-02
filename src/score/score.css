@@ -26,11 +26,11 @@
 }
 
 .scoreContainer .score.changing {
-    box-shadow: 0px 0px 10px 1px #aacc55;
+    box-shadow: 0px 0px 10px 1px #d93f87;
 }
 
 .scoreContainer .score .bar {
-    background-color: #aacc55;
+    background-color: #a8c824;
     height: 100%;
     transition: width 0.3s ease-in-out;
 }
