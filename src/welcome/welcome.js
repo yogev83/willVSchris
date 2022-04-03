@@ -2,17 +2,19 @@ import React from "react";
 import { WelcomeChris } from "../characters/chris/welcomeChris";
 import { WelcomeWill } from "../characters/will/welcomeWill";
 import { superLongTimeout } from "../utils";
+
+import start_png from "../images/start.png";
 import "./welcome.css";
 
-// function toggleFullScreen() {
-//   if (!document.fullscreenElement) {
-//     document.documentElement.requestFullscreen();
-//   } else {
-//     if (document.exitFullscreen) {
-//       document.exitFullscreen();
-//     }
-//   }
-// }
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
 
 // const timeout = (callback) => {
 //   return setTimeout(callback, 1000);
@@ -23,9 +25,10 @@ export function Welcome({ onStart }) {
   const [chris_joke, setChris_joke] = React.useState(false);
   const [willIn, setWillIn] = React.useState(false);
   const [will_scream, setWill_scream] = React.useState(false);
+  const [readyToStart, setReadyToStart] = React.useState(false);
 
   const onClick = React.useCallback(() => {
-    // toggleFullScreen();
+    toggleFullScreen();
     onStart();
   }, [onStart]);
 
@@ -40,6 +43,7 @@ export function Welcome({ onStart }) {
           setWill_scream(true);
           setTimeout(() => {
             setWill_scream(false);
+            setReadyToStart(true);
           }, 3000);
         }, 3000);
       });
@@ -66,7 +70,12 @@ export function Welcome({ onStart }) {
           enter={willIn}
         />
       </div>
-      <button onClick={onClick}>Start</button>
+      {readyToStart ? (
+        <div className="startButton" onClick={onClick}>
+          {" "}
+          <img src={start_png} alt="Will" />
+        </div>
+      ) : null}
     </div>
   );
 }
