@@ -1,33 +1,33 @@
 import React from "react";
-import { shortTimeout, superLongTimeout, meduimTimeout } from "../../utils";
+import { superLongTimeout } from "../../utils";
 import chris_png from "../../images/chris.png";
 import "./welcomeChris.css";
 
 const WIDTH = 98;
-const SPLAPPED_FRAME = 3;
-const SLAPPING_RANGE = 70;
+// const SPLAPPED_FRAME = 3;
+// const SLAPPING_RANGE = 70;
 
 const TEXT0 = `Jada... G.I. Jane2,`;
 const TEXT1 = `can't wait to see it!`;
 
 export const WelcomeChris = ({ joke, translateX, enter }) => {
   const [frame, setFrame] = React.useState(0);
-  const [slapped, setSlapped] = React.useState(false);
+  // const [slapped, setSlapped] = React.useState(false);
   const ref = React.useRef(null);
   const jokeTimeoutId = React.useRef(null);
 
-  const text = React.useMemo(() => {
-    switch (frame) {
-      case 1: {
-        return "Jada...";
-      }
-      case 2: {
-        return "G.I. Jane2!";
-      }
-      default:
-        return "";
-    }
-  }, [frame]);
+  // const text = React.useMemo(() => {
+  //   switch (frame) {
+  //     case 1: {
+  //       return "Jada...";
+  //     }
+  //     case 2: {
+  //       return "G.I. Jane2!";
+  //     }
+  //     default:
+  //       return "";
+  //   }
+  // }, [frame]);
 
   React.useEffect(() => {
     if (ref.current) {
@@ -49,7 +49,7 @@ export const WelcomeChris = ({ joke, translateX, enter }) => {
       }
       ref.current.style.textIndent = `-${frame * WIDTH}px`;
     }
-  }, [frame, slapped]);
+  }, [frame]);
 
   React.useEffect(() => {
     ref.current.style.transform = `translateX(${translateX}px)`;

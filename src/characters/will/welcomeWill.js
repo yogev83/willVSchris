@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  superShortTimeout,
-  shortTimeout,
-  meduimTimeout,
-  longTimeout,
-} from "../../utils";
 import will_png from "../../images/will.png";
 import "./welcomeWill.css";
 
 const WIDTH = 99;
-const SPEED_REDUCER = 10;
-const BENCHMARK = 20;
+// const SPEED_REDUCER = 10;
+// const BENCHMARK = 20;
 
 const TEXT0 = `Get her name out of`;
 const TEXT1 = `your @*%$#&# mouth!`;
