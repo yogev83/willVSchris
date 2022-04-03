@@ -4,15 +4,15 @@ import { WelcomeWill } from "../characters/will/welcomeWill";
 import { superLongTimeout } from "../utils";
 import "./welcome.css";
 
-function toggleFullScreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  }
-}
+// function toggleFullScreen() {
+//   if (!document.fullscreenElement) {
+//     document.documentElement.requestFullscreen();
+//   } else {
+//     if (document.exitFullscreen) {
+//       document.exitFullscreen();
+//     }
+//   }
+// }
 
 // const timeout = (callback) => {
 //   return setTimeout(callback, 1000);
@@ -25,7 +25,7 @@ export function Welcome({ onStart }) {
   const [will_scream, setWill_scream] = React.useState(false);
 
   const onClick = React.useCallback(() => {
-    toggleFullScreen();
+    // toggleFullScreen();
     onStart();
   }, [onStart]);
 
