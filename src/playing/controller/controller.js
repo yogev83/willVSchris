@@ -2,12 +2,12 @@ import React from "react";
 import { ControlButton } from "./controlButton";
 import "./controller.css";
 
-export const Controller = ({ onClick }) => {
+export const Controller = ({ onTouchEvent }) => {
   return (
     <div className="controller">
-      <ControlButton className="left" />
-      <ControlButton className="right" />
-      <ControlButton className="action" />
+      <ControlButton type="left" onTouchEvent={onTouchEvent} />
+      <ControlButton type="right" onTouchEvent={onTouchEvent} />
+      <ControlButton type="action" onTouchEvent={onTouchEvent} />
     </div>
   );
 };

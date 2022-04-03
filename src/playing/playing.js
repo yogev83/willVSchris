@@ -34,6 +34,10 @@ export function Playing() {
   const [slapped_x, setSlapped_x] = React.useState(null);
   const [chrisPosition, setChrisPosition] = React.useState(getChrisX());
   const [chrisJokeTime, setChrisJokeTime] = React.useState(getChrisJokeTime());
+
+  const [moving, setMoving] = React.useState(null);
+  const [slaping, setSlaping] = React.useState(false);
+
   const [score, setScore] = React.useState(50);
 
   const onSlapped = React.useCallback(() => {
@@ -54,10 +58,24 @@ export function Playing() {
   }, [score]);
 
   const onSlap = React.useCallback((will_x) => {
+    setSlaping(false);
     setSlapped_x(will_x);
   }, []);
 
+  const onTouchEvent = React.useCallback((event) => {
+    if (event === "left" || event === "right") {
+      setMoving(event);
+    } else if (event === "action") {
+      setSlaping(true);
+      setMoving(null);
+    } else {
+      setMoving(null);
+      setSlaping(null);
+    }
+  }, []);
+
   React.useEffect(() => {
+    audio.loop = true;
     audio.play();
   }, []);
 
@@ -72,8 +90,8 @@ export function Playing() {
           position={chrisPosition}
           jokeTime={chrisJokeTime}
         />
-        <Will onSlap={onSlap} />
-        <Controller />
+        <Will onSlap={onSlap} moving={moving} slaping={slaping} />
+        <Controller onTouchEvent={onTouchEvent} />
       </div>
     </div>
   );

@@ -1,12 +1,23 @@
 import React from "react";
 import "./controller.css";
 
-export const ControlButton = ({ type, onClick, className }) => {
-  const actionClicked = React.useCallback(() => {
-    onClick(type);
-  }, [onClick, type]);
+export const ControlButton = ({ type, onTouchEvent, enabled }) => {
+  const ref = React.useRef(null);
 
-  return (
-    <div className={`controlButton ${className}`} onClick={actionClicked}></div>
-  );
+  const onTouchStart = React.useCallback(() => {
+    onTouchEvent(type);
+  }, [onTouchEvent, type]);
+
+  const onTouchEnd = React.useCallback(() => {
+    onTouchEvent(null);
+  }, [onTouchEvent]);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.addEventListener("touchstart", onTouchStart, false);
+      ref.current.addEventListener("touchend", onTouchEnd, false);
+    }
+  }, []);
+
+  return <div className={`controlButton ${type}`} ref={ref}></div>;
 };

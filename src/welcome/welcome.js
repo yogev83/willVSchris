@@ -14,9 +14,9 @@ function toggleFullScreen() {
   }
 }
 
-const timeout = (callback) => {
-  return setTimeout(callback, 1000);
-};
+// const timeout = (callback) => {
+//   return setTimeout(callback, 1000);
+// };
 
 export function Welcome({ onStart }) {
   const [chrisIn, setChrisIn] = React.useState(false);
