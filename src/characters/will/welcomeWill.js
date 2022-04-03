@@ -2,10 +2,6 @@ import React from "react";
 import will_png from "../../images/will.png";
 import "./welcomeWill.css";
 
-const WIDTH = 99;
-// const SPEED_REDUCER = 10;
-// const BENCHMARK = 20;
-
 const TEXT0 = `Get her name out of`;
 const TEXT1 = `your @*%$#&# mouth!`;
 
@@ -20,7 +16,8 @@ export const WelcomeWill = ({ scream, translateX, enter }) => {
       } else if (frame === 5) {
         setFrame(0);
       }
-      ref.current.style.textIndent = `-${frame * WIDTH}px`;
+      const width = ref.current.getBoundingClientRect().width;
+      ref.current.style.textIndent = `-${frame * width}px`;
     }
   }, [frame, scream]);
 

@@ -1,7 +1,7 @@
 .chrisWrapper {
     position: absolute;
-    height: 178px;
-    width: 98px;
+    height: 211px;
+    width: 116px;
 }
 
 .chrisWrapper .chris {
@@ -14,7 +14,7 @@
     text-align: right;
 }
 
-.chrisWrapper .chris.slapped {
+.chrisWrapper .chris.fading {
     opacity: 0;
 }
 

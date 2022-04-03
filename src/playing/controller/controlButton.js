@@ -19,5 +19,9 @@ export const ControlButton = ({ type, onTouchEvent }) => {
     }
   }, [onTouchEnd, onTouchStart]);
 
-  return <div className={`controlButton ${type}`} ref={ref}></div>;
+  return (
+    <div className={`controlButton ${type}`} ref={ref}>
+      <i className="icon"></i>
+    </div>
+  );
 };

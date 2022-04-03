@@ -18,7 +18,7 @@ export function Welcome({ onStart }) {
   const [chris_joke, setChris_joke] = React.useState(false);
   const [willIn, setWillIn] = React.useState(false);
   const [will_scream, setWill_scream] = React.useState(false);
-  const [readyToStart, setReadyToStart] = React.useState(false);
+  const [readyToStart, setReadyToStart] = React.useState(true);
 
   const onClick = React.useCallback(() => {
     toggleFullScreen();

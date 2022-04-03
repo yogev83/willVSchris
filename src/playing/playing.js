@@ -8,13 +8,14 @@ import theme from "../audio/theme.mp3";
 import { Controller } from "./controller/controller";
 
 const SCREEN_PADDING = 100;
+const ROUGH_CHARACTER_WIDTH = 120;
 
 const audio = new Audio(theme);
 
 const getChrisX = (last) => {
   let x = getRandomInt(
     SCREEN_PADDING,
-    window.screen.width - SCREEN_PADDING - 100
+    window.screen.width - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
   );
   while (x === last) {
     x = getRandomInt(SCREEN_PADDING, window.screen.width - SCREEN_PADDING);
@@ -23,9 +24,9 @@ const getChrisX = (last) => {
 };
 
 const getChrisJokeTime = (last) => {
-  let time = getRandomInt(1, 5) * 1000;
+  let time = getRandomInt(1, 3) * 1000;
   while (time === last) {
-    time = getRandomInt(1, 5) * 1000;
+    time = getRandomInt(1, 3) * 1000;
   }
   return time;
 };
@@ -46,15 +47,17 @@ export function Playing() {
     }
 
     setSlapped_x(null);
+  }, [score]);
+
+  const renewChris = React.useCallback(() => {
     setChrisPosition((s) => getChrisX(s));
     setChrisJokeTime((s) => getChrisJokeTime(s));
-  }, [score]);
+  }, []);
 
   const onJoked = React.useCallback(() => {
     if (score > 0) {
       setScore((s) => s - 10);
     }
-    setChrisJokeTime((s) => getChrisJokeTime(s));
   }, [score]);
 
   const onSlap = React.useCallback((will_x) => {
@@ -87,6 +90,7 @@ export function Playing() {
           will_slapped_x={slapped_x}
           onSlapped={onSlapped}
           onJoked={onJoked}
+          onGone={renewChris}
           position={chrisPosition}
           jokeTime={chrisJokeTime}
         />

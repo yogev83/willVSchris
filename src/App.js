@@ -27,9 +27,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <header>
-        <img src={logo} alt="BigCo Inc. logo" />
-      </header>
+      {state === "playing" ? (
+        <header>
+          <img src={logo} alt="BigCo Inc. logo" />
+        </header>
+      ) : null}
       <div className="content">{view}</div>
     </div>
   );

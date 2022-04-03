@@ -3,19 +3,20 @@ import { shortTimeout, superLongTimeout, meduimTimeout } from "../../utils";
 import chris_png from "../../images/chris.png";
 import "./chris.css";
 
-const WIDTH = 98;
-const SPLAPPED_FRAME = 3;
+const SLAPPED_FRAME = 3;
 const SLAPPING_RANGE = 70;
 
 export const Chris = ({
   will_slapped_x,
   onSlapped,
   onJoked,
+  onGone,
   position,
   jokeTime,
 }) => {
   const [frame, setFrame] = React.useState(0);
   const [slapped, setSlapped] = React.useState(false);
+  const [joked, setJoked] = React.useState(false);
   const ref = React.useRef(null);
   const jokeTimeoutId = React.useRef(null);
 
@@ -33,17 +34,19 @@ export const Chris = ({
   }, [frame]);
 
   React.useEffect(() => {
-    if (will_slapped_x) {
+    if (ref.current && will_slapped_x) {
       const chris_x = ref.current.getBoundingClientRect().left;
+      const width = ref.current.getBoundingClientRect().width;
       if (
-        chris_x + WIDTH - SLAPPING_RANGE < will_slapped_x &&
-        will_slapped_x < chris_x + WIDTH + SLAPPING_RANGE
+        chris_x + width - SLAPPING_RANGE < will_slapped_x &&
+        will_slapped_x < chris_x + width + SLAPPING_RANGE
       ) {
         clearTimeout(jokeTimeoutId.current);
-        setFrame(SPLAPPED_FRAME);
+        onSlapped();
+        setFrame(SLAPPED_FRAME);
       }
     }
-  }, [will_slapped_x]);
+  }, [onSlapped, will_slapped_x]);
 
   React.useEffect(() => {
     if (ref.current) {
@@ -56,23 +59,28 @@ export const Chris = ({
         }
         case 2: {
           jokeTimeoutId.current = superLongTimeout(() => {
-            setFrame(0);
+            setJoked(true);
             onJoked();
+            superLongTimeout(() => {
+              onGone();
+              setJoked(false);
+            });
+            setFrame(0);
           });
           break;
         }
-        case SPLAPPED_FRAME: {
+        case SLAPPED_FRAME: {
           shortTimeout(() => {
             setFrame(frame + 1);
           });
           break;
         }
-        case SPLAPPED_FRAME + 1: {
+        case SLAPPED_FRAME + 1: {
           if (!slapped) {
             shortTimeout(() => {
               setSlapped(true);
               superLongTimeout(() => {
-                onSlapped();
+                onGone();
                 setFrame(0);
                 //HACK!!!
                 meduimTimeout(() => {
@@ -86,9 +94,10 @@ export const Chris = ({
         default: {
         }
       }
-      ref.current.style.textIndent = `-${frame * WIDTH}px`;
+      const width = ref.current.getBoundingClientRect().width;
+      ref.current.style.textIndent = `-${frame * width}px`;
     }
-  }, [frame, onJoked, onSlapped, slapped]);
+  }, [frame, onGone, onJoked, onSlapped, slapped]);
 
   React.useEffect(() => {
     if (ref.current) {
@@ -108,7 +117,11 @@ export const Chris = ({
   return (
     <div className="chrisWrapper" ref={ref}>
       <div className="chris-text">{text}</div>
-      <div className={`noSelect character chris${slapped ? " slapped" : ""}`}>
+      <div
+        className={`noSelect character chris${
+          slapped || joked ? " fading" : ""
+        }`}
+      >
         <img src={chris_png} alt="Chris" />
       </div>
     </div>

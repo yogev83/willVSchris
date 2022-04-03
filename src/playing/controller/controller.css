@@ -12,11 +12,40 @@
     width: 80px;
     border-radius: 50%;
     margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controller .controlButton.right .icon, .controller .controlButton.left .icon {
+    border: solid rgb(255, 255, 255, 0.85);
+    border-width: 0 8px 8px 0;
+    display: inline-block;
+    padding: 8px;
+}
+
+.controller .controlButton.right .icon {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.controller .controlButton.left .icon {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
 }
 
 .controller .controlButton.action {
     margin-left: auto;
 }
+
+.controller .controlButton.action .icon {
+    border: solid rgb(255, 255, 255, 0.85);
+    border-width: 8px;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+}
+
 
 @media only screen and (max-height: 600px) {
      .controller {
