@@ -2,23 +2,16 @@ import React from "react";
 import { WelcomeChris } from "../characters/chris/welcomeChris";
 import { WelcomeWill } from "../characters/will/welcomeWill";
 import { superLongTimeout } from "../utils";
+import screenfull from "screenfull";
 
 import start_png from "../images/start.png";
 import "./welcome.css";
 
 function toggleFullScreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
+  if (screenfull.isEnabled) {
+    screenfull.request();
   }
 }
-
-// const timeout = (callback) => {
-//   return setTimeout(callback, 1000);
-// };
 
 export function Welcome({ onStart }) {
   const [chrisIn, setChrisIn] = React.useState(false);
