@@ -14,6 +14,8 @@ function toggleFullScreen() {
 export function Intro({ onReady }) {
   const [logoGone, setLogoGone] = React.useState(false);
   const [ready, setReady] = React.useState(false);
+  const ref = React.useRef(null);
+
   const onClick = React.useCallback(() => {
     toggleFullScreen();
     window.screen.orientation
@@ -26,6 +28,10 @@ export function Intro({ onReady }) {
         onReady();
       });
   }, [onReady]);
+
+  React.useEffect(() => {
+    ref.current.addEventListener("touchstart", onClick);
+  }, [onClick]);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -46,7 +52,7 @@ export function Intro({ onReady }) {
           <div className="logo">
             <img src={logo_png} alt="hb" />
           </div>
-          <div className="clickToPlay" onClick={onClick}>
+          <div className="clickToPlay" ref={ref} onClick={onClick}>
             Click to Play
           </div>
         </>
