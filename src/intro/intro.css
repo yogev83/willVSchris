@@ -6,6 +6,7 @@
 
 @media only screen and (orientation:portrait) {
     .intro {
+      height: 100vw;
       transform: rotate(90deg);
     }
   }
