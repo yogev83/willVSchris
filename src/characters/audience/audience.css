@@ -1,0 +1,12 @@
+.audience {
+    position: absolute;
+    bottom: 0;
+    width: 243px;
+    height: 242px;
+    transform: translateY(calc(100% + 30px));
+    transition: transform 0.5s ease-in-out;
+}
+
+.audience.enter {
+    transform: translateY(65px);
+}

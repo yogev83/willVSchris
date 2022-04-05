@@ -1,6 +1,7 @@
 import React from "react";
 import { Will } from "../characters/will/will";
 import { Chris } from "../characters/chris/chris";
+import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
 import { getRandomInt } from "../utils";
 import "./playing.css";
@@ -9,6 +10,7 @@ import { Controller } from "./controller/controller";
 
 const SCREEN_PADDING = 100;
 const ROUGH_CHARACTER_WIDTH = 120;
+const ROUGH_JADA_WIDTH = 240;
 
 const audio = new Audio(theme);
 
@@ -18,8 +20,19 @@ const getChrisX = (last) => {
     window.screen.width - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
   );
   while (x === last) {
-    x = getRandomInt(SCREEN_PADDING, window.screen.width - SCREEN_PADDING);
+    x = getRandomInt(
+      SCREEN_PADDING,
+      window.screen.width - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
+    );
   }
+  return x;
+};
+
+const getJadaX = () => {
+  const x = getRandomInt(
+    SCREEN_PADDING,
+    window.screen.width - SCREEN_PADDING - ROUGH_JADA_WIDTH
+  );
   return x;
 };
 
@@ -39,14 +52,21 @@ export function Playing() {
   const [moving, setMoving] = React.useState(null);
   const [slaping, setSlaping] = React.useState(false);
 
+  const [jadaEnterLocation, setJadaEnterLocation] = React.useState(null);
+  const [momEnterLocation, setMomEnterLocation] = React.useState(null);
+
   const [score, setScore] = React.useState(50);
 
   const onSlapped = React.useCallback(() => {
     if (score < 100) {
-      setScore((s) => s + 10);
+      setScore((s) => s + 5);
     }
 
     setSlapped_x(null);
+    const momRandom = getRandomInt(0, 5);
+    if (momRandom === 0) {
+      setMomEnterLocation(getJadaX());
+    }
   }, [score]);
 
   const renewChris = React.useCallback(() => {
@@ -58,7 +78,16 @@ export function Playing() {
     if (score > 0) {
       setScore((s) => s - 10);
     }
+    const jadaRandom = getRandomInt(0, 5);
+    if (jadaRandom === 0) {
+      setJadaEnterLocation(getJadaX());
+    }
   }, [score]);
+
+  const audienceEntered = React.useCallback(() => {
+    setJadaEnterLocation(null);
+    setMomEnterLocation(null);
+  }, []);
 
   const onSlap = React.useCallback((will_x) => {
     setSlaping(false);
@@ -95,6 +124,16 @@ export function Playing() {
           jokeTime={chrisJokeTime}
         />
         <Will onSlap={onSlap} moving={moving} slaping={slaping} />
+        <Audience
+          who="jada"
+          enterLocation={jadaEnterLocation}
+          onEntered={audienceEntered}
+        />
+        <Audience
+          who="mom"
+          enterLocation={momEnterLocation}
+          onEntered={audienceEntered}
+        />
         <Controller onTouchEvent={onTouchEvent} />
       </div>
     </div>

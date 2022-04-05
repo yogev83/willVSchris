@@ -37,7 +37,7 @@ export function Welcome({ onStart }) {
           setTimeout(() => {
             setWill_scream(false);
             setReadyToStart(true);
-          }, 3000);
+          }, 2500);
         }, 3000);
       });
     });
@@ -69,6 +69,9 @@ export function Welcome({ onStart }) {
           <img src={start_png} alt="Will" />
         </div>
       ) : null}
+      <div className="skip" onClick={onClick}>
+        SKIP
+      </div>
     </div>
   );
 }
