@@ -8,7 +8,9 @@ import "./intro.css";
 function toggleFullScreen() {
   if (screenfull.isEnabled) {
     screenfull.request();
+    return true;
   }
+  return false;
 }
 
 export function Intro({ onReady }) {
@@ -31,7 +33,7 @@ export function Intro({ onReady }) {
       },
       [onReady]
     );
-    toggleFullScreen();
+    toggleFullScreen() || onReady();
   }, [onReady]);
 
   React.useEffect(() => {
