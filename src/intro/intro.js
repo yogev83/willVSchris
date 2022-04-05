@@ -32,7 +32,7 @@ export function Intro({ onReady }) {
       [onReady]
     );
     toggleFullScreen();
-  });
+  }, [onReady]);
 
   React.useEffect(() => {
     setTimeout(() => {
