@@ -16,18 +16,23 @@ export function Intro({ onReady }) {
   const [ready, setReady] = React.useState(false);
 
   const onClick = React.useCallback(() => {
-    alert();
+    document.addEventListener(
+      "fullscreenchange",
+      () => {
+        window.screen.orientation
+          .lock("landscape")
+          .then(function () {
+            onReady();
+          })
+          .catch(function (error) {
+            console.error(error);
+            onReady();
+          });
+      },
+      [onReady]
+    );
     toggleFullScreen();
-    window.screen.orientation
-      .lock("landscape")
-      .then(function () {
-        onReady();
-      })
-      .catch(function (error) {
-        console.error(error);
-        onReady();
-      });
-  }, [onReady]);
+  });
 
   React.useEffect(() => {
     setTimeout(() => {
