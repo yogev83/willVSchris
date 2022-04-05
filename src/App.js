@@ -5,9 +5,14 @@ import { Playing } from "./playing/playing";
 import logo from "./images/logo.png";
 
 import "./App.css";
+import { Intro } from "./intro/intro";
 
 export default function App() {
-  const [state, setState] = React.useState("welcome");
+  const [state, setState] = React.useState("intro");
+
+  const ready = React.useCallback(() => {
+    setState("welcome");
+  }, []);
 
   const start = React.useCallback(() => {
     setState("playing");
@@ -15,6 +20,8 @@ export default function App() {
 
   const view = React.useMemo(() => {
     switch (state) {
+      case "intro":
+        return <Intro onReady={ready} />;
       case "welcome":
         return <Welcome onStart={start} />;
       case "playing":
@@ -23,7 +30,7 @@ export default function App() {
       default:
         return <div>Something went wrong</div>;
     }
-  }, [state, start]);
+  }, [state, ready, start]);
 
   return (
     <div className="App">
@@ -32,7 +39,7 @@ export default function App() {
           <img src={logo} alt="BigCo Inc. logo" />
         </header>
       ) : null}
-      <div className="content">{view}</div>
+      {state !== "intro" ? <div className="content">{view}</div> : view}
     </div>
   );
 }

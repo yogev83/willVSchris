@@ -2,26 +2,16 @@ import React from "react";
 import { WelcomeChris } from "../characters/chris/welcomeChris";
 import { WelcomeWill } from "../characters/will/welcomeWill";
 import { superLongTimeout } from "../utils";
-import screenfull from "screenfull";
 
-import start_png from "../images/start.png";
 import "./welcome.css";
-
-function toggleFullScreen() {
-  if (screenfull.isEnabled) {
-    screenfull.request();
-  }
-}
 
 export function Welcome({ onStart }) {
   const [chrisIn, setChrisIn] = React.useState(false);
   const [chris_joke, setChris_joke] = React.useState(false);
   const [willIn, setWillIn] = React.useState(false);
   const [will_scream, setWill_scream] = React.useState(false);
-  const [readyToStart, setReadyToStart] = React.useState(false);
 
   const onClick = React.useCallback(() => {
-    toggleFullScreen();
     onStart();
   }, [onStart]);
 
@@ -36,12 +26,12 @@ export function Welcome({ onStart }) {
           setWill_scream(true);
           setTimeout(() => {
             setWill_scream(false);
-            setReadyToStart(true);
+            onStart();
           }, 2500);
         }, 3000);
       });
     });
-  }, []);
+  }, [onStart]);
 
   return (
     <div className="welcome">
@@ -63,12 +53,6 @@ export function Welcome({ onStart }) {
           enter={willIn}
         />
       </div>
-      {readyToStart ? (
-        <div className="startButton" onClick={onClick}>
-          {" "}
-          <img src={start_png} alt="Will" />
-        </div>
-      ) : null}
       <div className="skip" onClick={onClick}>
         SKIP
       </div>

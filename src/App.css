@@ -4,24 +4,32 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url("./images/background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow: hidden;
 }
 
 .App header {
   padding: 15px 0;
   height: 50px;
+  text-align: center;
+  z-index: 1;
 }
 
 .App header img {
-  height: 100%
+  height: 100%;
+  vertical-align: middle;
 }
 
 .App .content {
+  background-image: url("./images/background.png");
   padding: 30px 30px;
   flex: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .App .noSelect {
