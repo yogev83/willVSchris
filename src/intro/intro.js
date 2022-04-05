@@ -12,7 +12,7 @@ function toggleFullScreen() {
 }
 
 export function Intro({ onReady }) {
-  const [logoGone, setLogoGone] = React.useState(false);
+  const [logoGone, setLogoGone] = React.useState(true);
   const [ready, setReady] = React.useState(false);
 
   const onClick = React.useCallback(() => {
@@ -35,6 +35,7 @@ export function Intro({ onReady }) {
   }, [onReady]);
 
   React.useEffect(() => {
+    setLogoGone(false);
     setTimeout(() => {
       setLogoGone(true);
     }, 2000);
@@ -45,7 +46,7 @@ export function Intro({ onReady }) {
 
   return (
     <div className="intro">
-      <div className={`hb ${logoGone ? "hidden" : ""}`}>
+      <div className={`hb ${logoGone ? " hidden" : ""}`}>
         <img src={hb_png} alt="hb" />
       </div>
       {ready ? (
@@ -53,9 +54,7 @@ export function Intro({ onReady }) {
           <div className="logo">
             <img src={logo_png} alt="hb" />
           </div>
-          <div className="clickToPlay" onClick={onClick}>
-            Click to Play
-          </div>
+          <button onClick={onClick}>Click to Play</button>
         </>
       ) : null}
     </div>
