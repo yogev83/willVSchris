@@ -116,11 +116,11 @@ export const Chris = ({
 
   return (
     <div className="chrisWrapper" ref={ref}>
-      <div className="chris-text">{text}</div>
+      <div className={`chris-text${text ? " show" : ""}`}>{text}</div>
       <div
         className={`noSelect character chris${
           slapped || joked ? " fading" : ""
-        }`}
+        }${slapped ? " slapped" : ""}`}
       >
         <img src={chris_png} alt="Chris" />
       </div>

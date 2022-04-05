@@ -11,14 +11,20 @@
 
 .welcomeWill {
     position: relative;
-    height: 215px;
-    width: 117px;
+    height: 236px;
+    width: 129px;
     overflow: hidden;
 }
 
 .welcomeWillWrapper .will-text {
-    top: -50px;
     text-indent: 0px;
     position: absolute;
+    background-color: white;
+    border: 1px dashed #333;
+    border-radius: 5px;
     width: 180px;
+    height: 50px;
+    padding: 3px;
+    top: -60px;
+    z-index: 1;
 }
