@@ -16,7 +16,15 @@ export function Intro({ onReady }) {
   const [ready, setReady] = React.useState(false);
   const onClick = React.useCallback(() => {
     toggleFullScreen();
-    onReady();
+    window.screen.orientation
+      .lock("landscape")
+      .then(function () {
+        onReady();
+      })
+      .catch(function (error) {
+        console.error(error);
+        onReady();
+      });
   }, [onReady]);
 
   React.useEffect(() => {
@@ -24,15 +32,7 @@ export function Intro({ onReady }) {
       setLogoGone(true);
     }, 2000);
     setTimeout(() => {
-      window.screen.orientation
-        .lock("portrait")
-        .then(function () {
-          setReady(true);
-        })
-        .catch(function (error) {
-          console.error(error);
-          setReady(true);
-        });
+      setReady(true);
     }, 3000);
   }, []);
 
