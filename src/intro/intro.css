@@ -6,8 +6,10 @@
 
 @media only screen and (orientation:portrait) {
     .intro {
-      height: 100vw;
-      transform: rotate(90deg);
+        transform: translateX(100vw) rotate(90deg);
+        transform-origin: top left;
+        height: 100vw;
+        width: 100vh;
     }
   }
 
@@ -17,11 +19,11 @@
     left: 50%;
     transform: translateX(-50%);
     margin: 0 auto;
+    transition: opacity 0.5s;
 }
 
 .intro .hb.hidden {
     opacity: 0;
-    transition: opacity 0.5s;
 }
 
 .intro .logo {
