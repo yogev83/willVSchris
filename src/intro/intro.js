@@ -33,17 +33,21 @@ export function Intro({ onReady }) {
       },
       [onReady]
     );
-    toggleFullScreen() || onReady();
+
+    const goingFs = toggleFullScreen();
+    if (!goingFs) {
+      onReady();
+    }
   }, [onReady]);
 
   React.useEffect(() => {
     setLogoGone(false);
     setTimeout(() => {
       setLogoGone(true);
-    }, 2000);
+    }, 1500);
     setTimeout(() => {
       setReady(true);
-    }, 3000);
+    }, 2500);
   }, []);
 
   return (
@@ -56,7 +60,10 @@ export function Intro({ onReady }) {
           <div className="logo">
             <img src={logo_png} alt="hb" />
           </div>
-          <button onClick={onClick}>Click to Play</button>
+          <div className="clickToPlay" onClick={onClick}>
+            Click to Play
+          </div>
+          <div className="turn">(please rotate your screen)</div>
         </>
       ) : null}
     </div>
