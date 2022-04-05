@@ -4,6 +4,12 @@
     height: 100%;
 }
 
+@media only screen and (orientation:portrait) {
+    .intro {
+      transform: rotate(90deg);
+    }
+  }
+
 .intro .hb, .intro .logo {
     opacity: 1;
     position: absolute;
@@ -27,9 +33,9 @@
     height: auto;
 }
 
-/* .intro .clickToPlay {
+.intro .clickToPlay {
     color: white;
     font-size: 2.5em;
     font-weight: bold;
     margin-top: 30px;
-} */
+}

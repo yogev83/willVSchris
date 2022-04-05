@@ -53,9 +53,9 @@ export function Intro({ onReady }) {
           <div className="logo">
             <img src={logo_png} alt="hb" />
           </div>
-          <button className="clickToPlay" onClick={onClick}>
+          <div className="clickToPlay" onClick={onClick}>
             Click to Play
-          </button>
+          </div>
         </>
       ) : null}
     </div>
