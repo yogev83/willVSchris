@@ -1,11 +1,23 @@
-.speaker {
-	height: 30px;
-	width: 30px;
+.muteWrapper {
+	height: 40px;
+	width: 40px;
 	position: absolute;
-	overflow: hidden;
 	top: 30px;
 	right: 0;
+	background: rgb(204 204 204 / 70%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.speaker {
+	position: absolute;
+    height: 30px;
+    width: 30px;
+	overflow: hidden;
+}
+
 .speaker span {
 	display: block;
 	width: 8px;

@@ -14,8 +14,10 @@ export const MuteButton = ({ audio }) => {
   };
 
   return (
-    <div className={`speaker${muted ? " mute" : ""}`} onClick={onClick}>
-      <span></span>
+    <div className="muteWrapper">
+      <div className={`speaker${muted ? " mute" : ""}`} onClick={onClick}>
+        <span></span>
+      </div>
     </div>
   );
 };

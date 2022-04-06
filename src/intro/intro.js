@@ -5,6 +5,9 @@ import hb_png from "../images/hb.png";
 import logo_png from "../images/logo.png";
 import "./intro.css";
 
+const params = new URLSearchParams(window.location.search);
+const debug = params.get("debug") === "true";
+
 function toggleFullScreen() {
   if (screenfull.isEnabled) {
     screenfull.request();
@@ -30,6 +33,7 @@ export function Intro({ onReady }) {
           .catch(function (error) {
             console.error(error);
             setNotSupported(true);
+            debug && onReady();
           });
       },
       [onReady]
@@ -38,6 +42,7 @@ export function Intro({ onReady }) {
     const goingFs = toggleFullScreen();
     if (!goingFs) {
       setNotSupported(true);
+      debug && onReady();
     }
   }, [onReady]);
 
@@ -62,7 +67,7 @@ export function Intro({ onReady }) {
             <img src={logo_png} alt="hb" />
           </div>
 
-          {notSupported ? (
+          {notSupported && !params.has("debug") ? (
             <div className="notSupported">
               Sorry. Your device is currently not supported (But we are on it!)
             </div>
