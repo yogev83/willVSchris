@@ -67,7 +67,7 @@ export function Intro({ onReady }) {
             <img src={logo_png} alt="hb" />
           </div>
 
-          {notSupported && !params.has("debug") ? (
+          {notSupported ? (
             <div className="notSupported">
               Sorry. Your device is currently not supported (But we are on it!)
             </div>
