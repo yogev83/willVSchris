@@ -16,6 +16,7 @@ function toggleFullScreen() {
 export function Intro({ onReady }) {
   const [logoGone, setLogoGone] = React.useState(true);
   const [ready, setReady] = React.useState(false);
+  const [notSupported, setNotSupported] = React.useState(false);
 
   const onClick = React.useCallback(() => {
     document.addEventListener(
@@ -28,6 +29,7 @@ export function Intro({ onReady }) {
           })
           .catch(function (error) {
             console.error(error);
+            //   setNotSupported(true);
             onReady();
           });
       },
@@ -36,7 +38,7 @@ export function Intro({ onReady }) {
 
     const goingFs = toggleFullScreen();
     if (!goingFs) {
-      onReady();
+      //setNotSupported(true);
     }
   }, [onReady]);
 
@@ -60,10 +62,19 @@ export function Intro({ onReady }) {
           <div className="logo">
             <img src={logo_png} alt="hb" />
           </div>
-          <div className="clickToPlay" onClick={onClick}>
-            Click to Play
-          </div>
-          <div className="turn">(please rotate your screen)</div>
+
+          {notSupported ? (
+            <div className="notSupported">
+              Sorry. Your device is currently not supported (But we are on it!)
+            </div>
+          ) : (
+            <>
+              <div className="clickToPlay" onClick={onClick}>
+                Click to Play
+              </div>
+              <div className="turn">(please enable screen rotation)</div>
+            </>
+          )}
         </>
       ) : null}
     </div>

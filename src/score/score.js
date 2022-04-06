@@ -1,7 +1,8 @@
 import React from "react";
+import { toCammel } from "../utils";
 import "./score.css";
 
-export const Score = ({ score }) => {
+export const Score = ({ score, who }) => {
   const ref = React.useRef(null);
   const [changing, setChanging] = React.useState(false);
 
@@ -23,12 +24,11 @@ export const Score = ({ score }) => {
   }, []);
 
   return (
-    <div className="scoreContainer">
+    <div className={`scoreContainer ${who}`}>
       <div className={`score${changing ? " changing" : ""}`}>
         <div className="bar" ref={ref}></div>{" "}
       </div>
-      <div className="name">Chris</div>
-      <div className="name">Will</div>
+      <div className="name">{toCammel(who)}</div>
     </div>
   );
 };

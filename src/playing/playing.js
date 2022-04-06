@@ -10,6 +10,7 @@ import theme from "../audio/theme.mp3";
 import { Controller } from "./controller/controller";
 import { WinChris } from "../characters/chris/winChris";
 import { WinWill } from "../characters/will/winWill";
+import { MuteButton } from "./muteButton/muteButton";
 
 const SCREEN_PADDING = 100;
 const ROUGH_CHARACTER_WIDTH = 120;
@@ -58,7 +59,8 @@ export function Playing() {
   const [jadaEnterLocation, setJadaEnterLocation] = React.useState(null);
   const [momEnterLocation, setMomEnterLocation] = React.useState(null);
 
-  const [score, setScore] = React.useState(25);
+  const [scoreWill, setScoreWill] = React.useState(50);
+  const [scoreChris, setScoreChris] = React.useState(50);
 
   const onReset = React.useCallback(() => {
     setSlapped_x(null);
@@ -68,11 +70,12 @@ export function Playing() {
     setSlaping(false);
     setJadaEnterLocation(null);
     setMomEnterLocation(null);
-    setScore(25);
+    setScoreWill(50);
+    setScoreChris(50);
   }, []);
 
   const onSlapped = React.useCallback(() => {
-    setScore((s) => Math.min(s + 5, 100));
+    setScoreChris((s) => Math.min(s - 5, 100));
     setSlapped_x(null);
     const momRandom = getRandomInt(0, 5);
     if (momRandom === 0) {
@@ -86,7 +89,7 @@ export function Playing() {
   }, []);
 
   const onJoked = React.useCallback(() => {
-    setScore((s) => Math.max(s - 10, 0));
+    setScoreWill((s) => Math.max(s - 15, 0));
     const jadaRandom = getRandomInt(0, 5);
     if (jadaRandom === 0) {
       setJadaEnterLocation(getJadaX());
@@ -117,22 +120,24 @@ export function Playing() {
 
   React.useEffect(() => {
     audio.loop = true;
+    audio.volume = 0;
     audio.play();
   }, []);
 
   return (
     <div className="playing">
-      <Score score={score} />
+      <Score score={scoreWill} who="will" />
+      <Score score={scoreChris} who="chris" />
       <div className="characters">
-        {score <= 0 ? (
+        {scoreWill <= 0 ? (
           <>
             <WinChris />
             <Again onClick={onReset} />
           </>
-        ) : score >= 100 ? (
+        ) : scoreChris <= 0 ? (
           <>
             <WinWill />
-            <Again onClick={onReset} />
+            <Again onClick={onReset} win={true} />
           </>
         ) : (
           <>
@@ -158,6 +163,7 @@ export function Playing() {
             <Controller onTouchEvent={onTouchEvent} />
           </>
         )}
+        <MuteButton audio={audio} />
       </div>
     </div>
   );

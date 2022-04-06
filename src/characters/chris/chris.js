@@ -4,7 +4,7 @@ import chris_png from "../../images/chris.png";
 import "./chris.css";
 
 const SLAPPED_FRAME = 3;
-const SLAPPING_RANGE = 70;
+const SLAPPING_RANGE = 20;
 
 export const Chris = ({
   will_slapped_x,
@@ -38,8 +38,8 @@ export const Chris = ({
       const chris_x = ref.current.getBoundingClientRect().left;
       const width = ref.current.getBoundingClientRect().width;
       if (
-        chris_x + width - SLAPPING_RANGE < will_slapped_x &&
-        will_slapped_x < chris_x + width + SLAPPING_RANGE
+        chris_x + width - 50 - SLAPPING_RANGE < will_slapped_x &&
+        will_slapped_x < chris_x + width - 50 + SLAPPING_RANGE
       ) {
         clearTimeout(jokeTimeoutId.current);
         onSlapped();

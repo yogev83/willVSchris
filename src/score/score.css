@@ -13,6 +13,13 @@
         top: calc(38px - 0.5em);
         left: 30px;
     }
+
+    .scoreContainer.chris {
+        position: fixed;
+        top: calc(38px - 0.5em);
+        right: 30px;
+        left: unset
+    }
   }
 
 .scoreContainer .score {
@@ -47,8 +54,4 @@
     height: 1em;
     font-size: small;
     font-style: italic;
-}
-
-.scoreContainer .name:last-child {
-    margin-left: auto;
 }

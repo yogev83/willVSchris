@@ -12,6 +12,7 @@
   height: 50px;
   text-align: center;
   z-index: 1;
+  pointer-events: none;
 }
 
 .App header img {

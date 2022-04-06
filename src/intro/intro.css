@@ -42,6 +42,11 @@
     margin-top: 50px;
 }
 
+.intro .notSupported {
+    color: white;
+    margin-top: 50px;
+}
+
 @media only screen and (orientation:portrait) {
     .intro {
         transform: translateX(100vw) rotate(90deg);
