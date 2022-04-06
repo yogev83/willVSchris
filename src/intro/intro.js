@@ -29,8 +29,7 @@ export function Intro({ onReady }) {
           })
           .catch(function (error) {
             console.error(error);
-            //   setNotSupported(true);
-            onReady();
+            setNotSupported(true);
           });
       },
       [onReady]
@@ -38,7 +37,7 @@ export function Intro({ onReady }) {
 
     const goingFs = toggleFullScreen();
     if (!goingFs) {
-      //setNotSupported(true);
+      setNotSupported(true);
     }
   }, [onReady]);
 
