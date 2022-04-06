@@ -66,3 +66,7 @@ export const getTranslateValues = (element) => {
     };
   }
 };
+
+export const getScreenWidth = () => {
+  return Math.max(window.screen.width, window.screen.height);
+};

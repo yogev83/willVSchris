@@ -3,7 +3,7 @@ import { Will } from "../characters/will/will";
 import { Chris } from "../characters/chris/chris";
 import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
-import { getRandomInt } from "../utils";
+import { getRandomInt, getScreenWidth } from "../utils";
 import "./playing.css";
 import { Again } from "./again";
 import theme from "../audio/theme.mp3";
@@ -21,12 +21,12 @@ const audio = new Audio(theme);
 const getChrisX = (last) => {
   let x = getRandomInt(
     SCREEN_PADDING,
-    window.screen.width - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
+    getScreenWidth() - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
   );
   while (x === last) {
     x = getRandomInt(
       SCREEN_PADDING,
-      window.screen.width - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
+      getScreenWidth() - SCREEN_PADDING - ROUGH_CHARACTER_WIDTH
     );
   }
   return x;
@@ -35,7 +35,7 @@ const getChrisX = (last) => {
 const getJadaX = () => {
   const x = getRandomInt(
     SCREEN_PADDING,
-    window.screen.width - SCREEN_PADDING - ROUGH_JADA_WIDTH
+    getScreenWidth() - SCREEN_PADDING - ROUGH_JADA_WIDTH
   );
   return x;
 };

@@ -1,7 +1,6 @@
 import React from "react";
 
 export const Again = ({ onClick, score }) => {
-  console.log(score);
   return (
     <div className="tryAgain" onClick={onClick}>
       {score ? (

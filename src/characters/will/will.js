@@ -4,6 +4,7 @@ import {
   meduimTimeout,
   longTimeout,
   getTranslateValues,
+  getScreenWidth,
 } from "../../utils";
 import will_png from "../../images/will.png";
 import "./will.css";
@@ -31,7 +32,7 @@ export const Will = ({ moving, slaping, onSlap }) => {
       if (moving) {
         if (moving === "right") {
           const width = ref.current.getBoundingClientRect().width;
-          const right = window.screen.width - width - 30;
+          const right = getScreenWidth() - width - 30;
           const dist = right - ref.current.getBoundingClientRect().left;
           const time = dist / SPEED;
           ref.current.style.transition = `transform ${time}s linear`;

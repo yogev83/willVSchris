@@ -1,7 +1,7 @@
 import React from "react";
 import { WelcomeChris } from "../characters/chris/welcomeChris";
 import { WelcomeWill } from "../characters/will/welcomeWill";
-import { superLongTimeout } from "../utils";
+import { superLongTimeout, getScreenWidth } from "../utils";
 
 import "./welcome.css";
 
@@ -39,17 +39,13 @@ export function Welcome({ onStart }) {
         <WelcomeChris
           joke={chris_joke}
           translateX={
-            chrisIn
-              ? window.screen.width * 0.4 - 150
-              : window.screen.width * 0.2
+            chrisIn ? getScreenWidth() * 0.4 - 150 : getScreenWidth() * 0.2
           }
           enter={chrisIn}
         />
         <WelcomeWill
           scream={will_scream}
-          translateX={
-            willIn ? window.screen.width * 0.6 : window.screen.width * 0.8
-          }
+          translateX={willIn ? getScreenWidth() * 0.6 : getScreenWidth() * 0.8}
           enter={willIn}
         />
       </div>
