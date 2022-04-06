@@ -89,7 +89,7 @@ export function Playing() {
   }, []);
 
   const onJoked = React.useCallback(() => {
-    setScoreWill((s) => Math.max(s - 15, 0));
+    setScoreWill((s) => Math.max(s - 30, 0));
     const jadaRandom = getRandomInt(0, 5);
     if (jadaRandom === 0) {
       setJadaEnterLocation(getJadaX());
