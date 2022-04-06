@@ -75,7 +75,7 @@ export function Playing() {
   }, []);
 
   const onSlapped = React.useCallback(() => {
-    setScoreChris((s) => Math.min(s - 5, 100));
+    setScoreChris((s) => Math.min(s - 10, 100));
     setSlapped_x(null);
     const momRandom = getRandomInt(0, 5);
     if (momRandom === 0) {
