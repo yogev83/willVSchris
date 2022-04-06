@@ -59,8 +59,8 @@ export function Playing() {
   const [jadaEnterLocation, setJadaEnterLocation] = React.useState(null);
   const [momEnterLocation, setMomEnterLocation] = React.useState(null);
 
-  const [scoreWill, setScoreWill] = React.useState(50);
-  const [scoreChris, setScoreChris] = React.useState(1);
+  const [scoreWill, setScoreWill] = React.useState(100);
+  const [scoreChris, setScoreChris] = React.useState(100);
 
   const onReset = React.useCallback(() => {
     setSlapped_x(null);
@@ -70,8 +70,8 @@ export function Playing() {
     setSlaping(false);
     setJadaEnterLocation(null);
     setMomEnterLocation(null);
-    setScoreWill(50);
-    setScoreChris(50);
+    setScoreWill(100);
+    setScoreChris(100);
   }, []);
 
   const onSlapped = React.useCallback(() => {
