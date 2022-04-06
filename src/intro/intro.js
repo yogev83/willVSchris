@@ -1,4 +1,5 @@
 import React from "react";
+import screenfull from "screenfull";
 
 import hb_png from "../images/hb.png";
 import logo_png from "../images/logo.png";
@@ -8,20 +9,8 @@ const params = new URLSearchParams(window.location.search);
 const debug = params.get("debug") === "true";
 
 function toggleFullScreen() {
-  if (document.requestFullScreen) {
-    document.requestFullScreen();
-    return true;
-  } else if (document.webkitRequestFullScreen) {
-    document.webkitRequestFullScreen();
-    return true;
-  } else if (document.mozRequestFullScreen) {
-    document.mozRequestFullScreen();
-    return true;
-  } else if (document.msRequestFullscreen) {
-    document.msRequestFullscreen();
-    return true;
-  } else if (document.webkitEnterFullscreen) {
-    document.webkitEnterFullscreen(); //for iphone this code worked
+  if (screenfull.isEnabled) {
+    screenfull.request();
     return true;
   }
   return false;
