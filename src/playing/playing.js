@@ -60,7 +60,7 @@ export function Playing() {
   const [momEnterLocation, setMomEnterLocation] = React.useState(null);
 
   const [scoreWill, setScoreWill] = React.useState(50);
-  const [scoreChris, setScoreChris] = React.useState(50);
+  const [scoreChris, setScoreChris] = React.useState(1);
 
   const onReset = React.useCallback(() => {
     setSlapped_x(null);
@@ -137,7 +137,7 @@ export function Playing() {
         ) : scoreChris <= 0 ? (
           <>
             <WinWill />
-            <Again onClick={onReset} win={true} />
+            <Again onClick={onReset} score={scoreWill} />
           </>
         ) : (
           <>
