@@ -23,3 +23,19 @@
     -ms-user-select: none;
     height: 100%;
 }
+
+.playing .tryAgain {
+    text-indent: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    background-color: white;
+    border: 1px dashed #333;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1;
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+}

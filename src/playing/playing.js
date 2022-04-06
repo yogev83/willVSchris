@@ -5,8 +5,11 @@ import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
 import { getRandomInt } from "../utils";
 import "./playing.css";
+import { Again } from "./again";
 import theme from "../audio/theme.mp3";
 import { Controller } from "./controller/controller";
+import { WinChris } from "../characters/chris/winChris";
+import { WinWill } from "../characters/will/winWill";
 
 const SCREEN_PADDING = 100;
 const ROUGH_CHARACTER_WIDTH = 120;
@@ -55,19 +58,27 @@ export function Playing() {
   const [jadaEnterLocation, setJadaEnterLocation] = React.useState(null);
   const [momEnterLocation, setMomEnterLocation] = React.useState(null);
 
-  const [score, setScore] = React.useState(50);
+  const [score, setScore] = React.useState(25);
+
+  const onReset = React.useCallback(() => {
+    setSlapped_x(null);
+    setChrisPosition(getChrisX());
+    setChrisJokeTime(getChrisJokeTime());
+    setMoving(null);
+    setSlaping(false);
+    setJadaEnterLocation(null);
+    setMomEnterLocation(null);
+    setScore(25);
+  }, []);
 
   const onSlapped = React.useCallback(() => {
-    if (score < 100) {
-      setScore((s) => s + 5);
-    }
-
+    setScore((s) => Math.min(s + 5, 100));
     setSlapped_x(null);
     const momRandom = getRandomInt(0, 5);
     if (momRandom === 0) {
       setMomEnterLocation(getJadaX());
     }
-  }, [score]);
+  }, []);
 
   const renewChris = React.useCallback(() => {
     setChrisPosition((s) => getChrisX(s));
@@ -75,14 +86,12 @@ export function Playing() {
   }, []);
 
   const onJoked = React.useCallback(() => {
-    if (score > 0) {
-      setScore((s) => s - 10);
-    }
+    setScore((s) => Math.max(s - 10, 0));
     const jadaRandom = getRandomInt(0, 5);
     if (jadaRandom === 0) {
       setJadaEnterLocation(getJadaX());
     }
-  }, [score]);
+  }, []);
 
   const audienceEntered = React.useCallback(() => {
     setJadaEnterLocation(null);
@@ -115,26 +124,40 @@ export function Playing() {
     <div className="playing">
       <Score score={score} />
       <div className="characters">
-        <Chris
-          will_slapped_x={slapped_x}
-          onSlapped={onSlapped}
-          onJoked={onJoked}
-          onGone={renewChris}
-          position={chrisPosition}
-          jokeTime={chrisJokeTime}
-        />
-        <Will onSlap={onSlap} moving={moving} slaping={slaping} />
-        <Audience
-          who="jada"
-          enterLocation={jadaEnterLocation}
-          onEntered={audienceEntered}
-        />
-        <Audience
-          who="mom"
-          enterLocation={momEnterLocation}
-          onEntered={audienceEntered}
-        />
-        <Controller onTouchEvent={onTouchEvent} />
+        {score <= 0 ? (
+          <>
+            <WinChris />
+            <Again onClick={onReset} />
+          </>
+        ) : score >= 100 ? (
+          <>
+            <WinWill />
+            <Again onClick={onReset} />
+          </>
+        ) : (
+          <>
+            <Chris
+              will_slapped_x={slapped_x}
+              onSlapped={onSlapped}
+              onJoked={onJoked}
+              onGone={renewChris}
+              position={chrisPosition}
+              jokeTime={chrisJokeTime}
+            />
+            <Will onSlap={onSlap} moving={moving} slaping={slaping} />
+            <Audience
+              who="jada"
+              enterLocation={jadaEnterLocation}
+              onEntered={audienceEntered}
+            />
+            <Audience
+              who="mom"
+              enterLocation={momEnterLocation}
+              onEntered={audienceEntered}
+            />
+            <Controller onTouchEvent={onTouchEvent} />
+          </>
+        )}
       </div>
     </div>
   );

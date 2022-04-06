@@ -21,7 +21,7 @@ export const ControlButton = ({ type, onTouchEvent }) => {
 
   return (
     <div className={`controlButton ${type}`} ref={ref}>
-      <i className="icon"></i>
+      <i className="icon noSelect"></i>
     </div>
   );
 };

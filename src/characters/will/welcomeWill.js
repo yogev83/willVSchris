@@ -29,8 +29,8 @@ export const WelcomeWill = ({ scream, translateX, enter }) => {
     <div className={`welcomeWillWrapper ${enter ? " enter" : ""}`} ref={ref}>
       {scream ? (
         <div className="will-text">
-          <div>{TEXT0}</div>
-          <div>{TEXT1}</div>
+          <div className="noSelect">{TEXT0}</div>
+          <div className="noSelect">{TEXT1}</div>
         </div>
       ) : null}
       <div className="welcomeWill noSelect character">
