@@ -33,7 +33,7 @@ export function Intro({ onReady }) {
           .catch(function (error) {
             console.error(error);
             setNotSupported(true);
-            debug && onReady();
+            onReady();
           });
       },
       [onReady]
