@@ -5,9 +5,6 @@ import hb_png from "../images/hb.png";
 import logo_png from "../images/logo.png";
 import "./intro.css";
 
-const params = new URLSearchParams(window.location.search);
-const debug = params.get("debug") === "true";
-
 function toggleFullScreen() {
   if (screenfull.isEnabled) {
     screenfull.request();
