@@ -1,17 +1,50 @@
 import React from "react";
 
-const BASE_TWITTER_TEXT = "I scored [SCORE] on Will vs Chris!";
+const BASE_SHARE_TEXT = "I scored [SCORE] on Will vs Chris!";
 
 export const Again = ({ onClick, score }) => {
   const encodedValue = React.useMemo(() => {
-    return encodeURIComponent(BASE_TWITTER_TEXT.replace("[SCORE]", score));
+    return encodeURIComponent(BASE_SHARE_TEXT.replace("[SCORE]", score));
   }, [score]);
+
+  const onShareClick = React.useCallback(
+    (event) => {
+      let data = {
+        url: "https://willvschris.netlify.app/",
+        title: score
+          ? BASE_SHARE_TEXT.replace("[SCORE]", score)
+          : "Will vs Chris",
+        text: "Who will win the big battle of the Oscars?",
+      };
+      navigator.share(data);
+      event.preventDefault();
+    },
+    [score]
+  );
+
+  const sharing = React.useMemo(() => {
+    return typeof navigator.share !== "function" ? (
+      <div className={`sharing ${score ? " win" : ""}`} onClick={onShareClick}>
+        <svg
+          fill="#000000"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 30 30"
+          width="30px"
+          height="30px"
+        >
+          <path d="M 23 3 A 4 4 0 0 0 19 7 A 4 4 0 0 0 19.09375 7.8359375 L 10.011719 12.376953 A 4 4 0 0 0 7 11 A 4 4 0 0 0 3 15 A 4 4 0 0 0 7 19 A 4 4 0 0 0 10.013672 17.625 L 19.089844 22.164062 A 4 4 0 0 0 19 23 A 4 4 0 0 0 23 27 A 4 4 0 0 0 27 23 A 4 4 0 0 0 23 19 A 4 4 0 0 0 19.986328 20.375 L 10.910156 15.835938 A 4 4 0 0 0 11 15 A 4 4 0 0 0 10.90625 14.166016 L 19.988281 9.625 A 4 4 0 0 0 23 11 A 4 4 0 0 0 27 7 A 4 4 0 0 0 23 3 z" />
+        </svg>
+        Share
+      </div>
+    ) : null;
+  }, [onShareClick, score]);
 
   return (
     <div className="tryAgain" onClick={onClick}>
       {score ? (
         <>
           <div>Your Score: {score}</div>
+          {sharing}
           <iframe
             title="fbShare"
             src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwillvschris.netlify.app%2F&layout=button_count&size=small&width=77&height=20&appId"
@@ -50,7 +83,9 @@ export const Again = ({ onClick, score }) => {
             <span class="twitter-label">Tweet Your Score</span>
           </a>
         </>
-      ) : null}
+      ) : (
+        sharing
+      )}
       Play Again?
     </div>
   );

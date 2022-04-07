@@ -90,6 +90,10 @@
     white-space: nowrap;
 }
 
+.playing .tryAgain .sharing {
+    /* display: none; */
+}
+
 @media only screen and (max-height: 600px) {
     .playing .keys {
         display: none;
@@ -101,5 +105,22 @@
 
     .playing .tryAgain {
         top: initial;
+    }
+
+    .playing .tryAgain .sharing {
+       font-size: 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: 20px;
+    }
+
+    .playing .tryAgain .sharing.win {
+        margin: 20px 0 0 0;
+     }
+
+    .playing .tryAgain .sharing svg {
+        margin-right: 3px;
+        transform: scale(0.8)
     }
   }
