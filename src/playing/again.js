@@ -23,7 +23,7 @@ export const Again = ({ onClick, score }) => {
   );
 
   const sharing = React.useMemo(() => {
-    return typeof navigator.share !== "function" ? (
+    return typeof navigator.share === "function" ? (
       <div className={`sharing ${score ? " win" : ""}`} onClick={onShareClick}>
         <svg
           fill="#000000"
