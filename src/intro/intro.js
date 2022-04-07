@@ -78,7 +78,11 @@ export function Intro({ onReady }) {
               <div className="clickToPlay" onClick={onClick}>
                 Click to Play
               </div>
-              <div className="turn">please enable screen rotation</div>
+              <div className="turn">
+                Please make sure screen rotation is enabled
+                <br />
+                and rotate device
+              </div>
             </>
           )}
         </>
