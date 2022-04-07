@@ -3,12 +3,7 @@ import { Will } from "../characters/will/will";
 import { Chris } from "../characters/chris/chris";
 import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
-import {
-  getRandomInt,
-  getScreenWidth,
-  getTranslateValues,
-  isMobile,
-} from "../utils";
+import { getRandomInt, getScreenWidth, isMobile } from "../utils";
 import "./playing.css";
 import { Again } from "./again";
 import theme from "../audio/theme.mp3";
