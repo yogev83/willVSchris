@@ -40,7 +40,7 @@ export const Again = ({ onClick, score }) => {
   }, [onShareClick, score]);
 
   return (
-    <div className="tryAgain" onClick={onClick}>
+    <div className="tryAgain">
       {score ? (
         <>
           <div>Your Score: {score}</div>
@@ -86,7 +86,7 @@ export const Again = ({ onClick, score }) => {
       ) : (
         sharing
       )}
-      Play Again?
+      <div onclick={onClick}>Play Again?</div>
     </div>
   );
 };
