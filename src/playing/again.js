@@ -80,13 +80,13 @@ export const Again = ({ onClick, score }) => {
                 fill="#FFF"
               ></path>
             </svg>
-            <span class="twitter-label">Tweet Your Score</span>
+            <span className="twitter-label">Tweet Your Score</span>
           </a>
         </>
       ) : (
         sharing
       )}
-      <div onclick={onClick}>Play Again?</div>
+      <div onClick={onClick}>Play Again?</div>
     </div>
   );
 };
