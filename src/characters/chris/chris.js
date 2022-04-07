@@ -10,7 +10,7 @@ import "./chris.css";
 
 const _isMobile = isMobile();
 const SLAPPED_FRAME = 3;
-const SLAPPING_RANGE = _isMobile ? 20 : 40;
+const SLAPPING_RANGE = _isMobile ? 20 : 80;
 
 export const Chris = ({
   will_slapped_x,
@@ -19,6 +19,7 @@ export const Chris = ({
   onGone,
   position,
   jokeTime,
+  flipped,
 }) => {
   const [frame, setFrame] = React.useState(0);
   const [slapped, setSlapped] = React.useState(false);
@@ -44,9 +45,10 @@ export const Chris = ({
       const chris_x = ref.current.getBoundingClientRect().left;
       const width = ref.current.getBoundingClientRect().width;
       if (
-        chris_x + width - 50 - SLAPPING_RANGE < will_slapped_x &&
+        chris_x + width - (_isMobile ? 50 : 50) - SLAPPING_RANGE <
+          will_slapped_x &&
         will_slapped_x <
-          chris_x + width - (_isMobile ? 50 : 100) + SLAPPING_RANGE
+          chris_x + width - (_isMobile ? 50 : 50) + SLAPPING_RANGE
       ) {
         clearTimeout(jokeTimeoutId.current);
         onSlapped();
@@ -127,7 +129,7 @@ export const Chris = ({
       <div
         className={`noSelect character chris${
           slapped || joked ? " fading" : ""
-        }${slapped ? " slapped" : ""}`}
+        }${flipped ? " flipped" : ""}`}
       >
         <img src={chris_png} alt="Chris" />
       </div>

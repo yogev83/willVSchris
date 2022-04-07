@@ -22,10 +22,6 @@
     text-align: right;
 }
 
-.welcomeChrisWrapper .welcomeChris.slapped {
-    opacity: 0;
-}
-
 .welcomeChrisWrapper .chris-text {
     background-color: white;
     border: 1px dashed #333;

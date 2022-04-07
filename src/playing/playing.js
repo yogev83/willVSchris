@@ -3,7 +3,12 @@ import { Will } from "../characters/will/will";
 import { Chris } from "../characters/chris/chris";
 import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
-import { getRandomInt, getScreenWidth, isMobile } from "../utils";
+import {
+  getRandomInt,
+  getScreenWidth,
+  getTranslateValues,
+  isMobile,
+} from "../utils";
 import "./playing.css";
 import { Again } from "./again";
 import theme from "../audio/theme.mp3";
@@ -63,6 +68,13 @@ export function Playing() {
   const [scoreChris, setScoreChris] = React.useState(100);
 
   const willRef = React.useRef(null);
+
+  const will_x = willRef.current ? getTranslateValues(willRef.current).x : null;
+  const flipped = React.useMemo(() => {
+    if (will_x && will_x < chrisPosition) {
+      return true;
+    }
+  }, [chrisPosition, will_x]);
 
   const onReset = React.useCallback(() => {
     setSlapped_x(null);
@@ -179,11 +191,13 @@ export function Playing() {
               onGone={renewChris}
               position={chrisPosition}
               jokeTime={chrisJokeTime}
+              flipped={flipped}
             />
             <Will
               onSlap={onSlap}
               moving={moving}
               slaping={slaping}
+              flipped={flipped}
               ref={willRef}
             />
             <Audience

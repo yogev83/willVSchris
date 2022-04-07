@@ -18,6 +18,10 @@
     opacity: 0;
 }
 
+.chrisWrapper .chris.flipped {
+    transform: scale(-1, 1);
+}
+
 .chrisWrapper .chris-text.show {
     background-color: white;
     border: 1px dashed #333;

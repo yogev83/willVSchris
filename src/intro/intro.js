@@ -54,9 +54,9 @@ export function Intro({ onReady }) {
       setLogoGone(true);
     }, 1500);
     setTimeout(() => {
-      setReady(true);
+      isMobile() ? setReady(true) : onReady();
     }, 2500);
-  }, []);
+  }, [onReady]);
 
   return (
     <div className="intro">
@@ -78,7 +78,7 @@ export function Intro({ onReady }) {
               <div className="clickToPlay" onClick={onClick}>
                 Click to Play
               </div>
-              <div className="turn">(please enable screen rotation)</div>
+              <div className="turn">please enable screen rotation</div>
             </>
           )}
         </>
