@@ -1,7 +1,6 @@
 import React from "react";
 
-const BASE_TWITTER_TEXT =
-  "I scorred [SCORE] on Will vs Chris!&url=https://willvschris.netlify.app/";
+const BASE_TWITTER_TEXT = "I scored [SCORE] on Will vs Chris!";
 
 export const Again = ({ onClick, score }) => {
   const encodedValue = React.useMemo(() => {
@@ -28,7 +27,7 @@ export const Again = ({ onClick, score }) => {
             class="twitter-share-button"
             rel="noreferrer"
             target="_blank"
-            href="https://twitter.com/intent/tweet?text=I%20scorred%2070%20on%20Will%20vs%20Chris!%26url%3Dhttps%3A%2F%2Fwillvschris.netlify.app%2F"
+            href={`https://twitter.com/intent/tweet?text=${encodedValue}&url=https://willvschris.netlify.app/`}
           >
             <svg
               width="22"
