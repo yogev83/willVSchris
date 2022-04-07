@@ -1,8 +1,9 @@
 import React from "react";
+import { isMobile } from "../../utils";
 import "./muteButton.css";
 
 export const MuteButton = ({ audio }) => {
-  const [muted, setMuted] = React.useState(true);
+  const [muted, setMuted] = React.useState(isMobile());
 
   const onClick = () => {
     if (muted) {

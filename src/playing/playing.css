@@ -11,7 +11,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 250px;
 }
 
 .playing .character img {    
@@ -41,4 +41,33 @@
     font-size: 1.5em;
     font-weight: 700;
     cursor: pointer;
+    top: 250px;
 }
+
+.playing .keys {
+    text-indent: 0px;
+    position: absolute;
+    left: 50%;
+    color: rgb(217, 63, 135);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%);
+    margin: 100px auto;
+    z-index: 1;
+    font-size: 1.3em;
+    font-weight: 600;
+    
+}
+
+@media only screen and (max-height: 600px) {
+    .playing .keys {
+        display: none;
+    }
+
+    .playing .characters {
+        margin-top: 50px;
+    }
+
+    .playing .tryAgain {
+        top: initial;
+    }
+  }

@@ -11,8 +11,8 @@
 
 .welcomeWill {
     position: relative;
-    height: 236px;
-    width: 129px;
+    height: 401px;
+    width: 219px;
     overflow: hidden;
 }
 
@@ -28,3 +28,10 @@
     top: -60px;
     z-index: 1;
 }
+
+@media only screen and (max-height: 600px) {
+    .welcomeWill {
+        height: 236px;
+        width: 129px;
+    }
+  }

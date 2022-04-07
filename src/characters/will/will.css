@@ -1,6 +1,13 @@
 .will {
     position: relative;
-    height: 236px;
-    width: 129px;
+    height: 401px;
+    width: 219px;
     overflow: hidden;
 }
+
+@media only screen and (max-height: 600px) {
+    .will {
+        height: 236px;
+        width: 129px;
+    }
+  }

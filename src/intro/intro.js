@@ -3,6 +3,7 @@ import screenfull from "screenfull";
 
 import hb_png from "../images/hb.png";
 import logo_png from "../images/logo.png";
+import { isMobile } from "../utils";
 import "./intro.css";
 
 function toggleFullScreen() {
@@ -36,9 +37,13 @@ export function Intro({ onReady }) {
       [onReady]
     );
 
-    const goingFs = toggleFullScreen();
-    if (!goingFs) {
-      setNotSupported(true);
+    if (isMobile()) {
+      const goingFs = toggleFullScreen();
+      if (!goingFs) {
+        setNotSupported(true);
+        onReady();
+      }
+    } else {
       onReady();
     }
   }, [onReady]);

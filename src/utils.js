@@ -70,3 +70,9 @@ export const getTranslateValues = (element) => {
 export const getScreenWidth = () => {
   return Math.max(window.screen.width, window.screen.height);
 };
+
+export const isMobile = () => {
+  return navigator.userAgent.match(
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+  );
+};

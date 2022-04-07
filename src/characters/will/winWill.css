@@ -1,8 +1,8 @@
 .winWillWrapper {
     position: absolute;
-    height: 224px;
-    width: 183px;
-    left: 50px;
+    height: 401px;
+    width: 362px;
+    left: 200px;
 }
 
 .winWillWrapper .winWill {
@@ -27,3 +27,11 @@
     font-size: smaller;
     z-index: 1;
 }
+
+@media only screen and (max-height: 600px) {
+    .winWillWrapper {
+        height: 224px;
+        width: 183px;
+        left: 50px;
+    }
+  }

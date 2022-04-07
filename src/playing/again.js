@@ -13,8 +13,8 @@ export const Again = ({ onClick, score }) => {
             height="20"
             style={{ border: "none", overflow: "hidden", margin: 20 }}
             scrolling="no"
-            frameborder="0"
-            allowfullscreen="true"
+            frameBorder="0"
+            allowFullScreen="true"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
         </>

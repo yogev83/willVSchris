@@ -1,7 +1,7 @@
 .welcomeChrisWrapper {
     position: absolute;
-    height: 224px;
-    width: 122px;
+    height: 397px;
+    width: 217px;
     opacity: 0;
 }
 
@@ -38,3 +38,10 @@
     position: absolute;
     z-index: 1;
 }
+
+@media only screen and (max-height: 600px) {
+    .welcomeChrisWrapper {
+        height: 224px;
+        width: 122px;
+    }
+  }

@@ -39,7 +39,14 @@ export default function App() {
           <img src={logo} alt="BigCo Inc. logo" />
         </header>
       ) : null}
-      {state !== "intro" ? <div className="content">{view}</div> : view}
+      {state !== "intro" ? (
+        <div className="content">
+          {view}
+          <div className="rotate">Please Rotate your Screen</div>
+        </div>
+      ) : (
+        view
+      )}
     </div>
   );
 }

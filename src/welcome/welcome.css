@@ -6,11 +6,11 @@
 }
 
 .welcome .characters {
-    margin-top: 50px;
     width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
+    margin-top: 250px;
 }
 
 .welcome .character img {    
@@ -39,8 +39,22 @@
 
 .welcome .skip {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    right: 60px;
+    bottom: 60px;
     color: #fff;
     font-weight: bold;
 }
+
+@media only screen and (max-height: 600px) {
+    .welcome .characters {
+        margin-top: 50px;
+    }
+
+    .welcome .skip {
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+        color: #fff;
+        font-weight: bold;
+    }
+  }

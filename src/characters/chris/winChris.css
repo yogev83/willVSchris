@@ -1,8 +1,8 @@
 .winChrisWrapper {
     position: absolute;
-    height: 224px;
-    width: 183px;
-    right: 50px;
+    height: 397px;
+    width: 358px;
+    right: 200px;
 }
 
 .winChrisWrapper .winChris {
@@ -27,3 +27,11 @@
     font-size: smaller;
     z-index: 1;
 }
+
+@media only screen and (max-height: 600px) {
+    .winChrisWrapper {
+        height: 224px;
+        width: 183px;
+        right: 50px;
+    }
+  }

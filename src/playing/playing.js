@@ -3,7 +3,12 @@ import { Will } from "../characters/will/will";
 import { Chris } from "../characters/chris/chris";
 import { Audience } from "../characters/audience/audience";
 import { Score } from "../score/score";
-import { getRandomInt, getScreenWidth } from "../utils";
+import {
+  getRandomInt,
+  getScreenWidth,
+  getTranslateValues,
+  isMobile,
+} from "../utils";
 import "./playing.css";
 import { Again } from "./again";
 import theme from "../audio/theme.mp3";
@@ -12,7 +17,7 @@ import { WinChris } from "../characters/chris/winChris";
 import { WinWill } from "../characters/will/winWill";
 import { MuteButton } from "./muteButton/muteButton";
 
-const SCREEN_PADDING = 100;
+const SCREEN_PADDING = isMobile() ? 100 : 200;
 const ROUGH_CHARACTER_WIDTH = 120;
 const ROUGH_JADA_WIDTH = 240;
 
@@ -61,6 +66,8 @@ export function Playing() {
 
   const [scoreWill, setScoreWill] = React.useState(100);
   const [scoreChris, setScoreChris] = React.useState(100);
+
+  const willRef = React.useRef(null);
 
   const onReset = React.useCallback(() => {
     setSlapped_x(null);
@@ -120,14 +127,43 @@ export function Playing() {
 
   React.useEffect(() => {
     audio.loop = true;
-    audio.volume = 0;
+    audio.volume = isMobile() ? 0 : 0.7;
     audio.play();
+
+    const handleClick = (event) => {
+      switch (event.key) {
+        case " ":
+          setSlaping(true);
+          setMoving(null);
+          break;
+        case "ArrowLeft":
+          setMoving("left");
+          break;
+        case "ArrowRight":
+          setMoving("right");
+          break;
+        default:
+          break;
+      }
+    };
+
+    const handleRelease = (event) => {
+      setMoving(null);
+    };
+
+    document.addEventListener("keydown", (event) => {
+      handleClick(event);
+    });
+    document.addEventListener("keyup", (event) => {
+      handleRelease(event);
+    });
   }, []);
 
   return (
     <div className="playing">
       <Score score={scoreWill} who="will" />
       <Score score={scoreChris} who="chris" />
+      <div className="keys">Arrows to Move, Space to Slap</div>
       <div className="characters">
         {scoreWill <= 0 ? (
           <>
@@ -149,7 +185,12 @@ export function Playing() {
               position={chrisPosition}
               jokeTime={chrisJokeTime}
             />
-            <Will onSlap={onSlap} moving={moving} slaping={slaping} />
+            <Will
+              onSlap={onSlap}
+              moving={moving}
+              slaping={slaping}
+              ref={willRef}
+            />
             <Audience
               who="jada"
               enterLocation={jadaEnterLocation}

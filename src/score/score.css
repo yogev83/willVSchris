@@ -1,24 +1,22 @@
 
 .scoreContainer {
-    position: relative;
     display: flex;
     height: 20px;
     width: 30%;
     align-items: center;
+    position: fixed;
+    top: calc(70px - 0.5em);
+    left: 30px;
+}
+
+.scoreContainer.chris {
+    right: 30px;
+    left: unset
 }
 
 @media only screen and (max-height: 600px) {
     .scoreContainer {
-        position: fixed;
         top: calc(38px - 0.5em);
-        left: 30px;
-    }
-
-    .scoreContainer.chris {
-        position: fixed;
-        top: calc(38px - 0.5em);
-        right: 30px;
-        left: unset
     }
   }
 

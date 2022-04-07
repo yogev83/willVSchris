@@ -2,7 +2,7 @@
 	height: 40px;
 	width: 40px;
 	position: absolute;
-	top: 30px;
+	top: 100px;
 	right: 0;
 	background: rgb(204 204 204 / 70%);
     border-radius: 50%;
@@ -10,6 +10,12 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (max-height: 600px) {
+	.muteWrapper {
+		top: 30px;
+	}
+  }
 
 .speaker {
 	position: absolute;

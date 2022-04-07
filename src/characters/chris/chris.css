@@ -1,7 +1,7 @@
 .chrisWrapper {
     position: absolute;
-    height: 224px;
-    width: 122px;
+    height: 397px;
+    width: 217px;
 }
 
 .chrisWrapper .chris {
@@ -31,3 +31,10 @@
     font-size: smaller;
     z-index: 1;
 }
+
+@media only screen and (max-height: 600px) {
+    .chrisWrapper {
+        height: 224px;
+        width: 122px;
+    }
+  }

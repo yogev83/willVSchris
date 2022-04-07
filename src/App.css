@@ -9,7 +9,7 @@
 
 .App header {
   padding: 15px 0;
-  height: 50px;
+  height: 100px;
   text-align: center;
   z-index: 1;
   pointer-events: none;
@@ -42,12 +42,35 @@
   -ms-user-select: none;
   user-select: none;
 }
+
 .App .noSelect:focus {
   outline: none !important;
 }
 
-@media only screen and (max-width: 600px) {
-  .App header img {
-    width: 100%;
+.App .rotate {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 700;
+  align-items: center;
+  z-index: 999;
+  justify-content: center;
+}
+
+@media only screen and (orientation:portrait) {
+  .App .rotate {
+    display: flex;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .App header {
+    height: 50px;
   }
 }

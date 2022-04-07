@@ -1,10 +1,16 @@
 import React from "react";
-import { shortTimeout, superLongTimeout, meduimTimeout } from "../../utils";
+import {
+  shortTimeout,
+  superLongTimeout,
+  meduimTimeout,
+  isMobile,
+} from "../../utils";
 import chris_png from "../../images/chris.png";
 import "./chris.css";
 
+const _isMobile = isMobile();
 const SLAPPED_FRAME = 3;
-const SLAPPING_RANGE = 20;
+const SLAPPING_RANGE = _isMobile ? 20 : 40;
 
 export const Chris = ({
   will_slapped_x,
@@ -39,7 +45,8 @@ export const Chris = ({
       const width = ref.current.getBoundingClientRect().width;
       if (
         chris_x + width - 50 - SLAPPING_RANGE < will_slapped_x &&
-        will_slapped_x < chris_x + width - 50 + SLAPPING_RANGE
+        will_slapped_x <
+          chris_x + width - (_isMobile ? 50 : 100) + SLAPPING_RANGE
       ) {
         clearTimeout(jokeTimeoutId.current);
         onSlapped();
