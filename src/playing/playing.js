@@ -134,7 +134,7 @@ export function Playing() {
 
   React.useEffect(() => {
     audio.loop = true;
-    audio.volume = isMobile() ? 0 : 0.7;
+    audio.volume = isMobile() ? 0 : 0.5;
     audio.play();
 
     const handleClick = (event) => {

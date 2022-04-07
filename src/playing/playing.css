@@ -55,7 +55,25 @@
     z-index: 1;
     font-size: 1.3em;
     font-weight: 600;
-    
+}
+
+.playing .tryAgain .twitter-share-button {
+    position: relative;
+    height: 20px;
+    box-sizing: border-box;
+    padding: 1px 12px 1px 12px;
+    background-color: #1d9bf0;
+    color: #fff;
+    border-radius: 9999px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: smaller;
+    margin-bottom: 20px;
+}
+
+.playing .tryAgain .twitter-share-button .tritter-label {
+    margin-left: 3px;
+    white-space: nowrap;
 }
 
 @media only screen and (max-height: 600px) {
