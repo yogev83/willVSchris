@@ -59,7 +59,7 @@
 
 .playing .tryAgain .twitter-share-button {
     position: relative;
-    height: 20px;
+    height: 25px;
     box-sizing: border-box;
     padding: 1px 12px 1px 12px;
     background-color: #1d9bf0;
@@ -67,8 +67,22 @@
     border-radius: 9999px;
     font-weight: 500;
     cursor: pointer;
-    font-size: smaller;
+    font-size: 12px;
     margin-bottom: 20px;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.playing .tryAgain .twitter-share-button svg {
+    color: #fff;
+    transform: scale(0.8);
+}
+
+.playing .tryAgain .twitter-share-button span {
+    margin-left: 3px;
 }
 
 .playing .tryAgain .twitter-share-button .tritter-label {

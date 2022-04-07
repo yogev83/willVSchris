@@ -65,7 +65,7 @@ export function Playing() {
   const [momEnterLocation, setMomEnterLocation] = React.useState(null);
 
   const [scoreWill, setScoreWill] = React.useState(100);
-  const [scoreChris, setScoreChris] = React.useState(100);
+  const [scoreChris, setScoreChris] = React.useState(10);
 
   const willRef = React.useRef(null);
 
